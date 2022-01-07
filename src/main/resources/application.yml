@@ -1,0 +1,65 @@
+server:
+  port: 8081
+spring:
+  main:
+    web-application-type: reactive
+    allow-bean-definition-overriding: true
+jwt:
+  secret-key: ptf-secret-key@
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+---
+spring:
+  profiles: k8s
+redis:
+  redisson:
+    config: |
+      singleServerConfig:
+        idleConnectionTimeout: 10000
+        connectTimeout: 10000
+        timeout: 3000
+        retryAttempts: 3
+        retryInterval: 1500
+        password: "{REDIS_PASS}"
+        subscriptionsPerConnection: 5
+        clientName: null
+        address: "{REDIS_ADDR}"
+        subscriptionConnectionMinimumIdleSize: 1
+        subscriptionConnectionPoolSize: 50
+        connectionMinimumIdleSize: 10
+        connectionPoolSize: 64
+        database: 0
+        dnsMonitoringInterval: 5000
+
+  rabbitmq:
+    host: {RABBIT_HOST}
+    port: {RABBIT_PORT}
+    username: {RABBIT_USER}
+    password: {RABBIT_PASSWORD}
+mongo:
+  dbname: {MONGO_DB}
+  username: {MONGO_USER}
+  password: {MONGO_PASSWORD}
+  connectionstr: {MONGO_URL}
+salt:
+  user-password: ptf-123456@
+  transaction-password: ptf-123456@
+client:
+  notify:
+    baseUrl: http://notify-service:8084
+
+google:
+  recaptcha:
+    web:
+      key:
+        site: {PUBLIC_WEB_CAPTCHA_KEY}
+        secret: {SECRET_WEB_CAPTCHA_KEY}
+    mobile:
+      key:
+        secret: {SECRET_APP_CAPTCHA_KEY}
+    endpoint: {CAPTCHA_VERIFY_CALLBACK}
+cron:
+  expression: 0 0 0 * * *
