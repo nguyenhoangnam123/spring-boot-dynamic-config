@@ -1,19 +1,10 @@
-server:
-  port: 8081
 spring:
+  config:
+    activate:
+      on-profile: dev
   main:
     web-application-type: reactive
     allow-bean-definition-overriding: true
-jwt:
-  secret-key: ptf-secret-key@
-logging:
-  level:
-    org:
-      springframework:
-        web: DEBUG
----
-spring:
-  profiles: k8s
 redis:
   redisson:
     config: |
@@ -26,7 +17,7 @@ redis:
         password: "{REDIS_PASS}"
         subscriptionsPerConnection: 5
         clientName: null
-        address: "{REDIS_ADDR}"
+        address: "{REDIS_URL}"
         subscriptionConnectionMinimumIdleSize: 1
         subscriptionConnectionPoolSize: 50
         connectionMinimumIdleSize: 10
@@ -38,11 +29,11 @@ redis:
     host: {RABBIT_HOST}
     port: {RABBIT_PORT}
     username: {RABBIT_USER}
-    password: {RABBIT_PASSWORD}
+    password: {RABBIT_PASS}
 mongo:
   dbname: {MONGO_DB}
   username: {MONGO_USER}
-  password: {MONGO_PASSWORD}
+  password: {MONGO_PASS}
   connectionstr: {MONGO_URL}
 salt:
   user-password: ptf-123456@
@@ -63,3 +54,12 @@ google:
     endpoint: {CAPTCHA_VERIFY_CALLBACK}
 cron:
   expression: 0 0 0 * * *
+server:
+  port: 8081
+jwt:
+  secret-key: ptf-secret-key@
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG

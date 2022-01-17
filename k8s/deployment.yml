@@ -1,0 +1,131 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-test-deployment
+  namespace: ptf-uat
+spec:
+  selector:
+    matchLabels:
+      app: auth-test-deployment
+  template:
+    metadata:
+      labels:
+        app: auth-test-deployment
+    spec:
+      containers:
+        - name: auth-test-container
+          imagePullPolicy: Always
+          image: gcr.io/prj-ptf-svc-dmz-dev/ptf-mobile-authservice
+          # command: 
+          #   - tail
+          #   - "-f"
+          #   - "/dev/null"
+          env: 
+            # - name: SPRING_PROFILES_ACTIVE
+            #   value: k8s
+            - name: REDIS_PASS
+              valueFrom:
+                configMapKeyRef:
+                  key: "REDIS_PASS"
+                  name: "env"
+                  optional: false     
+            - name: REDIS_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: "REDIS_URL"
+                  name: "env"
+                  optional: false      
+            - name: RABBIT_HOST
+              valueFrom:
+                configMapKeyRef:
+                  key: "RABBIT_HOST"
+                  name: "env"
+                  optional: false
+            - name: RABBIT_PORT
+              valueFrom:
+                configMapKeyRef:
+                  key: "RABBIT_PORT"
+                  name: "env"
+                  optional: false
+            - name: RABBIT_USER
+              valueFrom:
+                configMapKeyRef:
+                  key: "RABBIT_USER"
+                  name: "env"
+                  optional: false     
+            - name: RABBIT_PASS
+              valueFrom:
+                configMapKeyRef:
+                  key: "RABBIT_PASS"
+                  name: "env"
+                  optional: false  
+            - name: MONGO_DB
+              valueFrom:
+                configMapKeyRef:
+                  key: "MONGO_DB"
+                  name: "env"
+                  optional: false 
+            - name: MONGO_USER
+              valueFrom:
+                configMapKeyRef:
+                  key: "MONGO_USER"
+                  name: "env"
+                  optional: false  
+            - name: MONGO_PASS
+              valueFrom:
+                configMapKeyRef:
+                  key: "MONGO_PASS"
+                  name: "env"
+                  optional: false    
+            - name: MONGO_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: "MONGO_URL"
+                  name: "env"
+                  optional: false   
+            - name: PUBLIC_WEB_CAPTCHA_KEY
+              valueFrom:
+                configMapKeyRef:
+                  key: "PUBLIC_WEB_CAPTCHA_KEY"
+                  name: "env"
+                  optional: false  
+            - name: SECRET_WEB_CAPTCHA_KEY
+              valueFrom:
+                configMapKeyRef:
+                  key: "SECRET_WEB_CAPTCHA_KEY"
+                  name: "env"
+                  optional: false   
+            - name: SECRET_APP_CAPTCHA_KEY
+              valueFrom:
+                configMapKeyRef:
+                  key: "SECRET_APP_CAPTCHA_KEY"
+                  name: "env"
+                  optional: false
+            - name: CAPTCHA_VERIFY_CALLBACK
+              valueFrom:
+                configMapKeyRef:
+                  key: "CAPTCHA_VERIFY_CALLBACK"
+                  name: "env"
+                  optional: false                                                                                                                                                                                                                             
+          # command: 
+          #   - tail
+          #   - "-f"
+          #   - /dev/null         
+          ports:
+            - containerPort: 8081
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: auth-test-service
+  namespace: ptf-uat
+spec:
+  ports:
+    - name: http
+      protocol: TCP
+      port: 9000
+      targetPort: 8081
+  selector:
+    app: auth-test-deployment
+  type: ClusterIP
