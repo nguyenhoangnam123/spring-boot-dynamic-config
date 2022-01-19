@@ -12,8 +12,9 @@ data:
   MONGO_DB: "test_db"
   MONGO_USER: "admin"
   MONGO_PASS: "L%40m0982525487"
-  MONGO_URL: "mongodb+srv://admin:L%40m0982525487@cluster-ptf-dev-pri.pqmnj.mongodb.net/test_db?retryWrites=true\&w=majority"
+  MONGO_URL: "mongodb+srv://admin:L%40m0982525487@cluster-ptf-dev-pri.pqmnj.mongodb.net/test_db?retryWrites=true&w=majority"
   PUBLIC_WEB_CAPTCHA_KEY: "6Ldni5EdAAAAAFYf3k08z9wKssMyubOYf2QIdQCm"
   SECRET_WEB_CAPTCHA_KEY: "6Ldni5EdAAAAAMcJTa52PPpOWFBd1h3k9XSBvHND"
   SECRET_APP_CAPTCHA_KEY: "6LfEjJEdAAAAACuUOHBzw0PshP8o2PKyREYyMphb"
   CAPTCHA_VERIFY_CALLBACK: "https://www.google.com/recaptcha/api/siteverify"
+  LOGSTASH_URL: 10.9.11.90:5000

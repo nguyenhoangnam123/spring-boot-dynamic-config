@@ -107,7 +107,13 @@ spec:
                 configMapKeyRef:
                   key: "CAPTCHA_VERIFY_CALLBACK"
                   name: "env"
-                  optional: false                                                                                                                                                                                                                             
+                  optional: false   
+            - name: LOGSTASH_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: "LOGSTASH_URL"
+                  name: "env"
+                  optional: false                                                                                                                                                                                                                            
           # command: 
           #   - tail
           #   - "-f"
