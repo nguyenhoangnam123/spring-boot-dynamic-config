@@ -1,7 +1,8 @@
+---
 spring:
   config:
     activate:
-      on-profile: dev
+      on-profile: k8s
   main:
     web-application-type: reactive
     allow-bean-definition-overriding: true
@@ -24,12 +25,11 @@ redis:
         connectionPoolSize: 64
         database: 0
         dnsMonitoringInterval: 5000
-
-  rabbitmq:
-    host: {RABBIT_HOST}
-    port: {RABBIT_PORT}
-    username: {RABBIT_USER}
-    password: {RABBIT_PASS}
+rabbitmq:
+  host: {RABBIT_HOST}
+  port: {RABBIT_PORT}
+  username: {RABBIT_USER}
+  password: {RABBIT_PASS}
 mongo:
   dbname: {MONGO_DB}
   username: {MONGO_USER}
@@ -41,7 +41,6 @@ salt:
 client:
   notify:
     baseUrl: http://notify-service:8084
-
 google:
   recaptcha:
     web:

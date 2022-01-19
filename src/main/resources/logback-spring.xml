@@ -56,4 +56,16 @@
             <appender-ref ref="STDOUT"/>
         </logger>
     </springProfile>
+
+    
+    <springProfile name="k8s">
+        <root level="INFO">
+            <appender-ref ref="STDOUT"/>
+            <appender-ref ref="logstash"/>
+        </root>
+        <logger name="com.ptfmobile.auth" additivity="false" level="info">
+            <appender-ref ref="logstash"/>
+            <appender-ref ref="STDOUT"/>
+        </logger>
+    </springProfile>
 </configuration>

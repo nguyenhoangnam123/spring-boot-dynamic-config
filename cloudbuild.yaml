@@ -1,0 +1,24 @@
+steps:
+env: 
+  - 'BUILD=$BUILD_ID'
+  - 'PROJECT_ID=$PROJECT_ID'
+  - 'PROJECT_NUMBER=$PROJECT_NUMBER'
+  - 'REV=$REVISION_ID'
+  - 'REPO_NAME=$REPO_NAME'
+  - 'SHORT_SHA=$SHORT_SHA'
+substitutions:
+  _LOCATION_: asia-east2
+  # build the container image
+- name: "gcr.io/cloud-builders/docker"
+  args: ["build", "-t", "${_LOCATION_}-docker.pkg.dev/$PROJECT_ID/ptf-mobile/$REPO_NAME:$REV-$SHORT_SHA", "."]
+  # push container image
+- name: "gcr.io/cloud-builders/docker"
+  args: ["push", "${_LOCATION_}-docker.pkg.dev/$PROJECT_ID/ptf-mobile/$REPO_NAME:$REV-$SHORT_SHA"]
+  # deploy container image to GKE
+# - name: "gcr.io/cloud-builders/gke-deploy"
+#   args:
+#   - run
+#   - --filename=kubernetes-resource-file
+#   - --image=${_LOCATION_}-docker.pkg.dev/$PROJECT_ID/ptf-mobile/$REPO_NAME:$REV-$SHORT_SHA
+#   - --location=location
+#   - --cluster=cluster

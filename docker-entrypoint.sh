@@ -15,6 +15,6 @@ sed -i "s#{SECRET_WEB_CAPTCHA_KEY}#${SECRET_WEB_CAPTCHA_KEY}#g" BOOT-INF/classes
 sed -i "s#{SECRET_APP_CAPTCHA_KEY}#${SECRET_APP_CAPTCHA_KEY}#g" BOOT-INF/classes/application.yml
 sed -i "s#{CAPTCHA_VERIFY_CALLBACK}#${CAPTCHA_VERIFY_CALLBACK}#g" BOOT-INF/classes/application.yml
 
-java org.springframework.boot.loader.JarLauncher
+java -Dspring.profiles.active=k8s org.springframework.boot.loader.JarLauncher
 # java -Dspring.config.location=file:BOOT-INF/classes/application.yml org.springframework.boot.loader.JarLauncher --spring.profiles.active=${PROFILE}
 # SPRING_PROFILES_ACTIVE
