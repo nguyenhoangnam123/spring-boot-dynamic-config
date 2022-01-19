@@ -26,7 +26,7 @@ import java.io.IOException;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/auth-test")
+@RequestMapping("/auth")
 public class AuthController {
 
     @Autowired
@@ -42,7 +42,7 @@ public class AuthController {
     @ModuleDescriptionAPI(
             name = "Đăng nhập",
             module = "auth",
-            path = "/auth-test/login",
+            path = "/auth/login",
             description = "Đăng nhập hệ thống",
             type = ModuleApiType.PUBLIC,
             adminMetadata = false,
@@ -64,7 +64,7 @@ public class AuthController {
     @ModuleDescriptionAPI(
             name = "Đăng xuất",
             module = "auth",
-            path = "/auth-test/logout",
+            path = "/auth/logout",
             description = "Đăng xuất hệ thống",
             type = ModuleApiType.PUBLIC,
             adminMetadata = false,
@@ -78,7 +78,7 @@ public class AuthController {
     @ModuleDescriptionAPI(
         name = "Gửi OTP change password",
         module = "auth",
-        path = "/auth-test/get-otp",
+        path = "/auth/get-otp",
         description = "Gửi OTP change password",
         type = ModuleApiType.PUBLIC,
         adminMetadata = false,
@@ -95,7 +95,7 @@ public class AuthController {
     @ModuleDescriptionAPI(
         name = "Thay đổi mật khẩu qua OTP",
         module = "auth",
-        path = "/auth-test/change-password",
+        path = "/auth/change-password",
         description = "Thay đổi mật khẩu qua OTP",
         type = ModuleApiType.PUBLIC,
         adminMetadata = false,

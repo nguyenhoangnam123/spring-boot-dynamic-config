@@ -9,6 +9,6 @@ import org.springframework.context.annotation.Configuration;
 @Getter
 @Setter
 public class JwtProperties {
-    @Value(value = "{jwt.jwt-secret-key}")
+    @Value(value = "{jwt.secret-key}")
     private String secretKey;
 }

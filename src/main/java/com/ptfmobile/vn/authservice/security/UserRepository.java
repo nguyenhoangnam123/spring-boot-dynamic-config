@@ -28,7 +28,7 @@ public class UserRepository {
     public CustomUserDetails findByUsername(String username)
             throws UserNotExistException, UserUnavailableException {
         User user;
-        user = baseMongoDao.findOneV2(TableName.USERS, Filters.regex("userId", username, "i"), User.class);
+        user = baseMongoDao.findOneV2(TableName.USERS, Filters.eq("userId", username.toUpperCase()), User.class);
         if (Objects.isNull(user)) {
             user = baseMongoDao.findOneV2(TableName.USERS, Filters.regex("email", username, "i"), User.class);
             if (Objects.isNull(user)) {
