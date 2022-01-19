@@ -63,3 +63,5 @@ google:
     endpoint: {CAPTCHA_VERIFY_CALLBACK}
 cron:
   expression: 0 0 0 * * *
+logback:
+  destination: 139.162.58.91:5000

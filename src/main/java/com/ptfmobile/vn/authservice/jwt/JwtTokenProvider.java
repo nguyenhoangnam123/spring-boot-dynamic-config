@@ -69,8 +69,6 @@ public class JwtTokenProvider {
 
         String jwtString = createToken(authentication);
         saveToken(jwtString, authentication, request);
-
-        extractedResponse(authentication, jwtString, userData);
         return extractedResponse(authentication, jwtString, userData);
     }
 
