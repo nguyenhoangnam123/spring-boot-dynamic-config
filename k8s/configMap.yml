@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env
+data:
+  REDIS_PASS: "874bf9b9-35d4-4612-8a86-a5aea208136d"
+  REDIS_URL: "redis://10.11.193.9:6379"
+  RABBIT_HOST: "10.11.160.8"
+  RABBIT_PORT: "5672"
+  RABBIT_USER: "admin"
+  RABBIT_PASS: "admin#123"
+  MONGO_DB: "test_db"
+  MONGO_USER: "admin"
+  MONGO_PASS: "L%40m0982525487"
+  MONGO_URL: "mongodb+srv://admin:L%40m0982525487@cluster-ptf-dev-pri.pqmnj.mongodb.net/test_db?retryWrites=true\&w=majority"
+  PUBLIC_WEB_CAPTCHA_KEY: "6Ldni5EdAAAAAFYf3k08z9wKssMyubOYf2QIdQCm"
+  SECRET_WEB_CAPTCHA_KEY: "6Ldni5EdAAAAAMcJTa52PPpOWFBd1h3k9XSBvHND"
+  SECRET_APP_CAPTCHA_KEY: "6LfEjJEdAAAAACuUOHBzw0PshP8o2PKyREYyMphb"
+  CAPTCHA_VERIFY_CALLBACK: "https://www.google.com/recaptcha/api/siteverify"
